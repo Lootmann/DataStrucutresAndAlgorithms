@@ -1,15 +1,26 @@
 // src/stack.cc
 #include "../include/stack.hpp"
 
-Stack::Stack() {
-  dummy = new LinkedListNode(-1);
-  dummy->m_next = dummy;
+Stack::Stack() : m_size(0), head{nullptr} {}
+
+Stack::~Stack() {
+  while (!empty()) {
+    LinkedListNode* tmp = head;
+    head = head->m_next;
+    delete tmp;
+  }
 }
 
 void Stack::push(int val) {
   auto new_node = new LinkedListNode(val);
-  new_node->m_next = dummy->m_next;
-  dummy->m_next = new_node;
+
+  if (empty()) {
+    head = new_node;
+  } else {
+    new_node->m_next = head;
+    head = new_node;
+  }
+
   m_size++;
 }
 
@@ -18,23 +29,26 @@ int Stack::top() {
     throw std::out_of_range("Stack is Empty");
   }
 
-  return dummy->m_next->m_val;
+  return head->m_val;
 }
 
-LinkedListNode* Stack::pop() {
+int Stack::pop() {
   if (empty()) {
     throw std::out_of_range("Stack is Empty");
   }
 
   m_size--;
-  auto popped = dummy->m_next;
 
-  dummy->m_next = dummy->m_next->m_next;
-  return popped;
+  int p = head->m_val;
+  auto tmp = head;
+  head = head->m_next;
+  delete tmp;
+
+  return p;
 }
 
 bool Stack::empty() {
-  return dummy->m_next == dummy;
+  return head == nullptr;
 }
 
 int Stack::size() const {

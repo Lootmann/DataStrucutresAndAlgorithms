@@ -9,10 +9,15 @@
 
 class StackTest : public testing::Test {
 protected:
+  Stack *st;
+
   void SetUp() override {
     st = new Stack();
   }
-  Stack *st;
+
+  virtual void TearDown() override {
+    delete st;
+  }
 };
 
 TEST_F(StackTest, Init) {
@@ -39,8 +44,8 @@ TEST_F(StackTest, Pop) {
   EXPECT_EQ(st->top(), 99);
   EXPECT_EQ(st->size(), 100);
 
-  auto p = st->pop();
-  EXPECT_EQ(p->m_val, 99);
+  auto val = st->pop();
+  EXPECT_EQ(val, 99);
   EXPECT_EQ(st->size(), 99);
 }
 
@@ -54,8 +59,11 @@ TEST_F(StackTest, PopThrow) {
 
 TEST_F(StackTest, PopThrowAfterManyPush) {
   rep(i, 1000) st->push(i);
+  EXPECT_EQ(st->size(), 1000);
+
   rep(i, 1000) st->pop();
 
+  EXPECT_EQ(st->size(), 0);
   ASSERT_THROW(st->pop(), std::out_of_range);
 }
 

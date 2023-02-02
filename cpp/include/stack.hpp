@@ -8,15 +8,14 @@
 class Stack {
 private:
   int m_size;
-  LinkedListNode* dummy;
+  LinkedListNode* head;
 
 public:
   Stack();
+  ~Stack();
 
   void push(int);
-  // TODO: return LinkedListNode or value?
-  LinkedListNode* pop();
-  // TODO: return Node or value?
+  int pop();
   int top();
   bool empty();
   // NOTE: what is const?
