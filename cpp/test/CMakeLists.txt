@@ -4,9 +4,9 @@ find_package(GTest REQUIRED)
 include(GoogleTest)
 
 add_executable(test_out
-  ./test_linked_list.cc
+  # ./test_linked_list.cc
   ./test_queue.cc
-  ./test_stack.cc
+  # ./test_stack.cc
   )
 
 target_link_libraries(

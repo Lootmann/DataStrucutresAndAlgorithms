@@ -38,4 +38,6 @@
 # google test
 build/
 
+# valgrind
+logs/*
 # End of https://www.toptal.com/developers/gitignore/api/c++

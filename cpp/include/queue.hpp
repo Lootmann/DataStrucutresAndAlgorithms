@@ -9,9 +9,10 @@ private:
 
 public:
   Queue();
+  ~Queue();
 
   void enqueue(int);
-  LinkedListNode* dequeue();
+  int dequeue();
   int front();
   int back();
   bool empty();

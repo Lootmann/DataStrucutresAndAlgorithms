@@ -8,10 +8,15 @@
 
 class QueueTest : public testing::Test {
 protected:
+  Queue *q;
+
   void SetUp() override {
     q = new Queue();
   }
-  Queue *q;
+
+  virtual void TearDown() override {
+    delete q;
+  }
 };
 
 TEST_F(QueueTest, Init) {
@@ -38,8 +43,8 @@ TEST_F(QueueTest, Dequeue) {
     EXPECT_EQ(q->back(), size - 1);
     EXPECT_EQ(q->size(), size - idx);
 
-    auto f = q->dequeue();
-    EXPECT_EQ(f->m_val, idx);
+    int val = q->dequeue();
+    EXPECT_EQ(val, idx);
     idx++;
   }
 }

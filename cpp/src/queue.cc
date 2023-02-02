@@ -1,6 +1,14 @@
 #include "../include/queue.hpp"
 
-Queue::Queue() : head{nullptr}, tail{nullptr} {}
+Queue::Queue() : m_size{0}, head{nullptr}, tail{nullptr} {}
+
+Queue::~Queue() {
+  while (!empty()) {
+    LinkedListNode* tmp = head;
+    head = head->m_next;
+    delete tmp;
+  }
+}
 
 void Queue::enqueue(int val) {
   LinkedListNode* new_node = new LinkedListNode(val);
@@ -15,15 +23,17 @@ void Queue::enqueue(int val) {
   tail = new_node;
 }
 
-LinkedListNode* Queue::dequeue() {
+int Queue::dequeue() {
   if (empty()) throw std::out_of_range("Queue is Empty");
 
   m_size--;
-  LinkedListNode* f = head;
+  LinkedListNode* tmp = head;
+  int val = tmp->m_val;
   head = head->m_next;
+  delete tmp;
 
   if (empty()) tail = nullptr;
-  return f;
+  return val;
 }
 
 int Queue::front() {
