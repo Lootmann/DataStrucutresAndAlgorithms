@@ -8,4 +8,5 @@ public:
   LinkedListNode *m_next;
 
   LinkedListNode(int = 0);
+  ~LinkedListNode();
 };

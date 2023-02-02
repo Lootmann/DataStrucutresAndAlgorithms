@@ -2,13 +2,26 @@
 
 #include "../include/linked_list_node.hpp"
 
-TEST(LinkedListConstructure, DefaultValue) {
-  LinkedListNode *l = new LinkedListNode();
+class LinkedListTest : public testing::Test {
+protected:
+  LinkedListNode *l1;
+  LinkedListNode *l2;
 
-  ASSERT_TRUE(l->m_val == 0);
+  void SetUp() override {
+    l1 = new LinkedListNode();
+    l2 = new LinkedListNode(1);
+  }
+
+  virtual void TearDown() override {
+    delete l1;
+    delete l2;
+  }
+};
+
+TEST_F(LinkedListTest, DefaultValue) {
+  ASSERT_TRUE(l1->m_val == 0);
 }
 
-TEST(LinkedListConstructure, AddingInitialValue) {
-  LinkedListNode *l = new LinkedListNode(1);
-  ASSERT_TRUE(l->m_val == 1);
+TEST_F(LinkedListTest, AddingInitialValue) {
+  ASSERT_TRUE(l2->m_val == 1);
 }
