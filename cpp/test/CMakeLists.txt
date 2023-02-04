@@ -4,12 +4,12 @@ find_package(GTest REQUIRED)
 include(GoogleTest)
 
 add_executable(test_out
+  ./test_base64encoding.cc
+  ./test_deq.cc
   ./test_linked_list.cc
   ./test_doubly_linked_list.cc
   ./test_queue.cc
   ./test_stack.cc
-
-  ./test_base64encoding.cc
   )
 
 target_link_libraries(
