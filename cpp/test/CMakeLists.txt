@@ -11,6 +11,7 @@ add_executable(test_out
   ./test_doubly_linked_list.cc
   ./test_queue.cc
   ./test_stack.cc
+  ./test_templates.cc
   )
 
 target_link_libraries(

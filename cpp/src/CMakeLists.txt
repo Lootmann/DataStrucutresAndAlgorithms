@@ -9,6 +9,7 @@ add_library(Lib
   ./linked_list.cc
   ./queue.cc
   ./stack.cc
+  ./templates.cc
   )
 
 target_include_directories(Lib
