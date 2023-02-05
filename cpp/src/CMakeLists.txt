@@ -4,6 +4,7 @@ add_library(Lib
   STATIC
   ./array.cc
   ./base64encoding.cc
+  ./class_test.cc
   ./deq.cc
   ./doubly_linked_list_node.cc
   ./linked_list.cc
