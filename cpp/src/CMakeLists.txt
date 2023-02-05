@@ -9,6 +9,7 @@ add_library(Lib
   ./doubly_linked_list_node.cc
   ./linked_list.cc
   ./queue.cc
+  ./queue_ring_buffer.cc
   ./stack.cc
   ./templates.cc
   )
