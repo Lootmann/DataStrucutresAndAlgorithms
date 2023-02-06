@@ -62,30 +62,16 @@ TreeNode<T> *BinarySearchTree<T>::find_(TreeNode<T> *node, T val) {
 }
 
 template <class T>
-bool BinarySearchTree<T>::contains(T val) {
-  return contains_(head_, val);
-}
-
-template <class T>
 bool BinarySearchTree<T>::remove(T val) {
+  std::cout << val << '\n';
   return true;
 }
 
 template <class T>
 bool BinarySearchTree<T>::remove_(TreeNode<T> *node, T val) {
+  std::cout << node->val_ << '\n';
+  std::cout << val << '\n';
   return true;
-}
-
-template <class T>
-bool BinarySearchTree<T>::contains_(TreeNode<T> *node, T val) {
-  if (node == nullptr) return false;
-  if (node->val_ == val) return true;
-
-  if (val < node->val_) {
-    return contains_(node->left_, val);
-  } else {
-    return contains_(node->right_, val);
-  }
 }
 
 template <class T>

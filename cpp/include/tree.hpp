@@ -27,7 +27,6 @@ private:
   void insert_(TreeNode<T> *, T);
   TreeNode<T> *find_(TreeNode<T> *, T);
   bool remove_(TreeNode<T> *, T);
-  bool contains_(TreeNode<T> *, T);
 
 public:
   BinarySearchTree();
@@ -36,7 +35,6 @@ public:
   void insert(T);
   TreeNode<T> *find(T);
   bool remove(T);
-  bool contains(T);
 
   int size() const;
 };
