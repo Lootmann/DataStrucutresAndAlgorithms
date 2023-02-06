@@ -13,4 +13,8 @@ public:
 
   TreeNode() : TreeNode(0) {}
   TreeNode(T val) : val_{val}, left_{nullptr}, right_{nullptr} {}
+  ~TreeNode() {
+    delete left_;
+    delete right_;
+  }
 };

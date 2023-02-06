@@ -1,15 +1,8 @@
 #include "../include/array.hpp"
 
-Array::Array() : m_size(10), m_array(new int[10]) {
-  for (int i = 0; i < m_size; ++i) {
-    m_array[i] = 0;
-  }
-}
+Array::Array() : Array(10, 0) {}
 
-Array::Array(int size) : m_size(size) {
-  assert(0 < size);
-  m_array = new int[m_size];
-}
+Array::Array(int size) : Array(size, 0) {}
 
 Array::Array(int size, int fill) : m_size(size) {
   m_array = new int[size];
