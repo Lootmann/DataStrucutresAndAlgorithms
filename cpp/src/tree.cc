@@ -63,15 +63,51 @@ TreeNode<T> *BinarySearchTree<T>::find_(TreeNode<T> *node, T val) {
 
 template <class T>
 bool BinarySearchTree<T>::remove(T val) {
-  std::cout << val << '\n';
-  return true;
+  TreeNode<T> *found = find_(head_, val);
+  if (found == nullptr) return false;
+
+  return remove_(found);
 }
 
 template <class T>
-bool BinarySearchTree<T>::remove_(TreeNode<T> *node, T val) {
-  std::cout << node->val_ << '\n';
-  std::cout << val << '\n';
+bool BinarySearchTree<T>::remove_(TreeNode<T> *node) {
+  // no child
+  if (node->left_ == nullptr && node->right_ == nullptr) {
+    delete node;
+    return true;
+  }
+
+  // one child
+  if (node->left_ != nullptr) {
+    auto cur = node;
+    node = node->left_;
+    delete cur;
+    return true;
+  } else if (node->right_ != nullptr) {
+    auto cur = node;
+    node = node->right_;
+    delete cur;
+    return true;
+  }
+
+  // two children
+  TreeNode<T> *success = successor_(node);
+  node->val_ = success->val_;
+  delete success;
+
   return true;
+}
+
+// find a Node within right subtree
+template <class T>
+TreeNode<T> *BinarySearchTree<T>::successor_(TreeNode<T> *node) {
+  node = node->right_;
+
+  while (!node->left_) {
+    node = node->left_;
+  }
+
+  return node;
 }
 
 //

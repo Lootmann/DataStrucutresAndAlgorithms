@@ -23,7 +23,8 @@ private:
   TreeNode<T> *head_;
   void insert_(TreeNode<T> *, T);
   TreeNode<T> *find_(TreeNode<T> *, T);
-  bool remove_(TreeNode<T> *, T);
+  bool remove_(TreeNode<T> *);
+  TreeNode<T> *successor_(TreeNode<T> *);
 
   // traverse
   void inorder_(TreeNode<T> *);
