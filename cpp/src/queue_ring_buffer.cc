@@ -13,7 +13,7 @@ RingBufferQueue<T>::RingBufferQueue(int size)
 
 template <class T>
 RingBufferQueue<T>::~RingBufferQueue() {
-  delete m_array;
+  delete[] m_array;
 }
 
 template <class T>
