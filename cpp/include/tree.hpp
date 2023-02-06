@@ -1,9 +1,6 @@
 #pragma once
 
 #include <iostream>
-#include <string>
-
-using std::string;
 
 template <class T>
 class TreeNode {
@@ -28,6 +25,11 @@ private:
   TreeNode<T> *find_(TreeNode<T> *, T);
   bool remove_(TreeNode<T> *, T);
 
+  // traverse
+  void inorder_(TreeNode<T> *);
+  void preorder_(TreeNode<T> *);
+  void postorder_(TreeNode<T> *);
+
 public:
   BinarySearchTree();
   ~BinarySearchTree();
@@ -36,6 +38,11 @@ public:
   TreeNode<T> *find(T);
   bool remove(T);
 
+  // traverse
+  void inorder();
+  void preorder();
+  void postorder();
+
   int size() const;
 };
 
@@ -43,4 +50,4 @@ template class BinarySearchTree<int>;
 template class BinarySearchTree<long>;
 template class BinarySearchTree<long long>;
 template class BinarySearchTree<double>;
-template class BinarySearchTree<char>;
+// template class BinarySearchTree<char>; // can't compare :^)

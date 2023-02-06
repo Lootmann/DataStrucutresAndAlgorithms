@@ -74,6 +74,70 @@ bool BinarySearchTree<T>::remove_(TreeNode<T> *node, T val) {
   return true;
 }
 
+//
+// Traverse
+//
+template <class T>
+void BinarySearchTree<T>::inorder() {
+  if (head_ == nullptr) {
+    std::cout << "empty" << '\n';
+    return;
+  }
+  inorder_(head_);
+  std::cout << '\n';
+}
+
+// NOTE:
+//    std::cout is hard to test ... 🤔
+// NOTE:
+//    this is easy to test, see test/test_bst.cc testing::internal::Capture()
+template <class T>
+void BinarySearchTree<T>::inorder_(TreeNode<T> *node) {
+  if (node != nullptr) {
+    inorder_(node->left_);
+    std::cout << node->val_ << ' ';
+    inorder_(node->right_);
+  }
+}
+
+template <class T>
+void BinarySearchTree<T>::postorder() {
+  if (head_ == nullptr) {
+    std::cout << "empty" << '\n';
+    return;
+  }
+  postorder_(head_);
+  std::cout << '\n';
+}
+
+template <class T>
+void BinarySearchTree<T>::postorder_(TreeNode<T> *node) {
+  if (node != nullptr) {
+    postorder_(node->left_);
+    postorder_(node->right_);
+    std::cout << node->val_ << ' ';
+  }
+}
+
+template <class T>
+void BinarySearchTree<T>::preorder() {
+  if (head_ == nullptr) {
+    std::cout << "empty" << '\n';
+    return;
+  }
+  preorder_(head_);
+  std::cout << '\n';
+}
+
+template <class T>
+void BinarySearchTree<T>::preorder_(TreeNode<T> *node) {
+  if (node != nullptr) {
+    std::cout << node->val_ << ' ';
+    preorder_(node->left_);
+    preorder_(node->right_);
+  }
+}
+
 template <class T>
 int BinarySearchTree<T>::size() const {
   return m_size;
