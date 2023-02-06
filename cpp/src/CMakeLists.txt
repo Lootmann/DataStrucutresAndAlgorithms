@@ -12,6 +12,7 @@ add_library(Lib
   ./queue_ring_buffer.cc
   ./stack.cc
   ./templates.cc
+  ./tree.cc
   )
 
 target_include_directories(Lib

@@ -14,6 +14,7 @@ add_executable(test_out
   ./test_ring_buffer_queue.cc
   ./test_stack.cc
   ./test_templates.cc
+  ./test_tree.cc
   )
 
 target_link_libraries(
