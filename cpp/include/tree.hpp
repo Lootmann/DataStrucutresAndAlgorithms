@@ -18,3 +18,31 @@ public:
     delete right_;
   }
 };
+
+template <class T>
+class BinarySearchTree {
+private:
+  int m_size;
+  TreeNode<T> *head_;
+  void insert_(TreeNode<T> *, T);
+  TreeNode<T> *find_(TreeNode<T> *, T);
+  bool remove_(TreeNode<T> *, T);
+  bool contains_(TreeNode<T> *, T);
+
+public:
+  BinarySearchTree();
+  ~BinarySearchTree();
+
+  void insert(T);
+  TreeNode<T> *find(T);
+  bool remove(T);
+  bool contains(T);
+
+  int size() const;
+};
+
+template class BinarySearchTree<int>;
+template class BinarySearchTree<long>;
+template class BinarySearchTree<long long>;
+template class BinarySearchTree<double>;
+template class BinarySearchTree<char>;

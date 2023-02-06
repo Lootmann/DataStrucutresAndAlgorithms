@@ -6,6 +6,7 @@ include(GoogleTest)
 add_executable(test_out
   ./test_array.cc
   ./test_base64encoding.cc
+  ./test_binary_search_tree.cc
   ./test_class_test.cc
   ./test_deq.cc
   ./test_linked_list.cc
