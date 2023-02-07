@@ -1,24 +1,7 @@
 #include <gtest/gtest.h>
 
-#include <algorithm>
-#include <iostream>
-#include <iterator>
-#include <numeric>
-#include <random>
-#include <vector>
-
 #include "../include/sorting.hpp"
-
-std::vector<int> GenerateVector(std::size_t size = 20) {
-  std::vector<int> v(size);
-  std::iota(v.begin(), v.end(), 0);
-
-  std::random_device seed_gen;
-  std::mt19937 engine(seed_gen());
-  std::shuffle(v.begin(), v.end(), engine);
-
-  return v;
-}
+#include "../include/util.hpp"
 
 TEST(SortingTest, BubbleSortFixed) {
   std::vector<int> v{10, 3, 4, 6, 2, 1, 9};
@@ -31,7 +14,7 @@ TEST(SortingTest, BubbleSortFixed) {
 }
 
 TEST(SortingTest, BubbleSortRandom) {
-  auto v = GenerateVector(10);
+  auto v = GenerateVector<int>(10);
 
   testing::internal::CaptureStdout();
   for (auto num : v) std::cout << num;
