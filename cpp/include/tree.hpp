@@ -22,6 +22,9 @@ private:
   TreeNode<T> *head_;
   TreeNode<T> *insert_(TreeNode<T> *, T);
   TreeNode<T> *find_(TreeNode<T> *, T);
+  TreeNode<T> *remove_(TreeNode<T> *, T);
+  TreeNode<T> *findMin(TreeNode<T> *);
+  // void destructNode(TreeNode<T> *);
 
   // traverse
   void inorder_(TreeNode<T> *);
@@ -34,6 +37,7 @@ public:
 
   void insert(T);
   TreeNode<T> *find(T);
+  void remove(T);
 
   // traverse
   void inorder();

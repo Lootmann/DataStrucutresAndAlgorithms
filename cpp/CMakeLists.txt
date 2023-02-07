@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.12)
 
 project(PROJECT CXX)
 set(CMAKE_CXX_FLAGS
-  "-std=c++20 -g -Wall -Wextra -Wshadow -pedantic-errors"
+  "-std=c++20 -g -O2 -Wall -Wextra -Wshadow -pedantic-errors"
   )
 
 # gtest suite

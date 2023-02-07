@@ -5,8 +5,18 @@ BinarySearchTree<T>::BinarySearchTree() : head_(nullptr) {}
 
 template <class T>
 BinarySearchTree<T>::~BinarySearchTree() {
+  if (head_ == nullptr) return;
   delete head_;
 }
+
+// template <class T>
+// void BinarySearchTree<T>::destructNode(TreeNode<T> *node) {
+//   if (node) {
+//     destructNode(node->left_);
+//     destructNode(node->right_);
+//     delete node;
+//   }
+// }
 
 template <class T>
 void BinarySearchTree<T>::insert(T val) {
@@ -49,6 +59,57 @@ TreeNode<T> *BinarySearchTree<T>::find_(TreeNode<T> *node, T val) {
   } else {
     return find_(node->right_, val);
   }
+}
+
+template <class T>
+TreeNode<T> *BinarySearchTree<T>::remove_(TreeNode<T> *root, T val) {
+  if (root == nullptr) return nullptr;
+
+  if (val < root->val_) {
+    root->left_ = remove_(root->left_, val);
+  }
+
+  else if (root->val_ < val) {
+    root->right_ = remove_(root->right_, val);
+  }
+
+  else {
+    if (root->left_ == nullptr && root->right_ == nullptr) {
+      root = nullptr;
+    }
+
+    else if (root->left_ == nullptr) {
+      TreeNode<T> *tmp = root;
+      root = root->right_;
+      tmp = nullptr;
+      delete tmp;
+    }
+
+    else if (root->right_ == nullptr) {
+      TreeNode<T> *tmp = root;
+      root = root->left_;
+      tmp = nullptr;
+      delete tmp;
+    }
+
+    else {
+      TreeNode<T> *tmp = findMin(root->right_);
+      root->val_ = tmp->val_;
+      root->right_ = remove_(root->right_, tmp->val_);
+    }
+  }
+  return root;
+}
+
+template <class T>
+void BinarySearchTree<T>::remove(T val) {
+  head_ = remove_(head_, val);
+}
+
+template <class T>
+TreeNode<T> *BinarySearchTree<T>::findMin(TreeNode<T> *node) {
+  while (node->left_ != nullptr) node = node->left_;
+  return node;
 }
 
 //
