@@ -1,5 +1,6 @@
 #include <gtest/gtest.h>
 
+#include <cwchar>
 #include <iostream>
 #include <string>
 
@@ -7,11 +8,12 @@
 
 class BinarySearchTreeTest : public testing::Test {
 protected:
-  BinarySearchTree<int> *bst, *traverse;
+  BinarySearchTree<int> *bst, *traverse, *rmv;
 
   void SetUp() override {
     bst = new BinarySearchTree<int>();
     traverse = new BinarySearchTree<int>();
+    rmv = new BinarySearchTree<int>();
 
     int array[]{10, 5, 20, 1, 8, 14, 25};
     for (auto num : array) {
@@ -22,23 +24,16 @@ protected:
   virtual void TearDown() override {
     delete bst;
     delete traverse;
+    delete rmv;
   }
 };
 
-TEST_F(BinarySearchTreeTest, Init) {
-  EXPECT_EQ(bst->size(), 0);
-}
-
 TEST_F(BinarySearchTreeTest, Insert) {
   bst->insert(5);
-  EXPECT_EQ(bst->size(), 1);
-
   bst->insert(1);
-  EXPECT_EQ(bst->size(), 2);
-
   bst->insert(10);
-  EXPECT_EQ(bst->size(), 3);
 }
+
 /*
  *     10
  *  5     20
@@ -49,7 +44,6 @@ TEST_F(BinarySearchTreeTest, Find) {
 
   for (int i = 0; i < 7; ++i) {
     bst->insert(array[i]);
-    EXPECT_EQ(bst->size(), i + 1);
   }
 
   auto found = bst->find(1);
@@ -69,7 +63,6 @@ TEST_F(BinarySearchTreeTest, NotFind) {
 
   for (int i = 0; i < 7; ++i) {
     bst->insert(array[i]);
-    EXPECT_EQ(bst->size(), i + 1);
   }
 
   auto found = bst->find(1);
@@ -84,6 +77,7 @@ TEST_F(BinarySearchTreeTest, NotFind) {
   EXPECT_EQ(found->right_, right);
 }
 
+// util
 TEST_F(BinarySearchTreeTest, Inorder) {
   testing::internal::CaptureStdout();
   traverse->inorder();
@@ -103,4 +97,42 @@ TEST_F(BinarySearchTreeTest, Preorder) {
   traverse->preorder();
   std::string output = testing::internal::GetCapturedStdout();
   EXPECT_EQ("10 5 1 8 20 14 25 \n", output);
+}
+
+void capture(BinarySearchTree<int> *node) {
+  testing::internal::CaptureStdout();
+  node->inorder();
+}
+
+TEST_F(BinarySearchTreeTest, RemoveOnlyRootNode) {
+  rmv->insert(1);
+
+  capture(rmv);
+  EXPECT_EQ("1 \n", testing::internal::GetCapturedStdout());
+
+  rmv->remove(1);
+
+  capture(rmv);
+  EXPECT_EQ("empty\n", testing::internal::GetCapturedStdout());
+}
+
+TEST_F(BinarySearchTreeTest, RemoveLeftChild) {
+  rmv->insert(5);
+  rmv->insert(1);
+
+  capture(rmv);
+  EXPECT_EQ("1 5 \n", testing::internal::GetCapturedStdout());
+
+  rmv->remove(1);
+
+  capture(rmv);
+  EXPECT_EQ("5 \n", testing::internal::GetCapturedStdout());
+}
+
+TEST_F(BinarySearchTreeTest, RemoveRightChild) {
+  rmv->insert(5);
+  rmv->insert(10);
+  rmv->inorder();
+  rmv->remove(5);
+  rmv->inorder();
 }

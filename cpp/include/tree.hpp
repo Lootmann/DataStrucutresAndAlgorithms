@@ -19,11 +19,11 @@ public:
 template <class T>
 class BinarySearchTree {
 private:
-  int m_size;
   TreeNode<T> *head_;
-  void insert_(TreeNode<T> *, T);
+  TreeNode<T> *insert_(TreeNode<T> *, T);
   TreeNode<T> *find_(TreeNode<T> *, T);
-  bool remove_(TreeNode<T> *);
+  void remove_(TreeNode<T> *&, T);
+  void findKeyNode(TreeNode<T> *&, T, TreeNode<T> *&);
   TreeNode<T> *successor_(TreeNode<T> *);
 
   // traverse
@@ -43,8 +43,6 @@ public:
   void inorder();
   void preorder();
   void postorder();
-
-  int size() const;
 };
 
 template class BinarySearchTree<int>;
