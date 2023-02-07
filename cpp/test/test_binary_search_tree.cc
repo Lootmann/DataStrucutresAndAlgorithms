@@ -103,36 +103,3 @@ void capture(BinarySearchTree<int> *node) {
   testing::internal::CaptureStdout();
   node->inorder();
 }
-
-TEST_F(BinarySearchTreeTest, RemoveOnlyRootNode) {
-  rmv->insert(1);
-
-  capture(rmv);
-  EXPECT_EQ("1 \n", testing::internal::GetCapturedStdout());
-
-  rmv->remove(1);
-
-  capture(rmv);
-  EXPECT_EQ("empty\n", testing::internal::GetCapturedStdout());
-}
-
-TEST_F(BinarySearchTreeTest, RemoveLeftChild) {
-  rmv->insert(5);
-  rmv->insert(1);
-
-  capture(rmv);
-  EXPECT_EQ("1 5 \n", testing::internal::GetCapturedStdout());
-
-  rmv->remove(1);
-
-  capture(rmv);
-  EXPECT_EQ("5 \n", testing::internal::GetCapturedStdout());
-}
-
-TEST_F(BinarySearchTreeTest, RemoveRightChild) {
-  rmv->insert(5);
-  rmv->insert(10);
-  rmv->inorder();
-  rmv->remove(5);
-  rmv->inorder();
-}

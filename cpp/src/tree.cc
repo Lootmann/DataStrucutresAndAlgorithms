@@ -1,9 +1,5 @@
 #include "../include/tree.hpp"
 
-using std::cerr;
-using std::cout;
-using std::endl;
-
 template <class T>
 BinarySearchTree<T>::BinarySearchTree() : head_(nullptr) {}
 
@@ -53,111 +49,6 @@ TreeNode<T> *BinarySearchTree<T>::find_(TreeNode<T> *node, T val) {
   } else {
     return find_(node->right_, val);
   }
-}
-
-template <class T>
-void BinarySearchTree<T>::remove_(TreeNode<T> *&root, T key) {
-  using Node = TreeNode<T>;
-
-  Node *parent = nullptr;
-  Node *curr = root;
-
-  findKeyNode(curr, key, parent);
-
-  if (parent == nullptr) {
-  } else {
-  }
-
-  if (curr == nullptr) {
-    return;
-  }
-
-  // ケース1：削除するノードに子がない、つまりリーフノードである
-  if (curr->left_ == nullptr && curr->right_ == nullptr) {
-    // 削除するノードがルートノードでない場合は、
-    // 親の左/右の子をnullに
-    if (curr != root) {
-      if (parent->left_ == curr) {
-        parent->left_ = nullptr;
-      } else {
-        parent->right_ = nullptr;
-      }
-    }
-    // ツリーにルートノードしかない場合は、nullに設定します
-    else {
-      root = nullptr;
-    }
-
-    // メモリの割り当てを解除します
-    delete curr;
-  }
-
-  // ケース2：削除するノードに2つの子があります
-  else if (curr->left_ && curr->right_) {
-    // その順序の後続ノードを見つける
-    Node *successor = successor_(curr->right_);
-
-    // 後続の値を保存します
-    int v = successor->val_;
-
-    // サクセサを再帰的にに削除します。後継者に注意してください
-    // 最大で1つの子(右の子)があります
-    remove_(root, successor->val_);
-
-    // サクセサの値を現在のノードにコピーします
-    curr->val_ = v;
-  }
-
-  // ケース3：削除するノードに子が1つしかない
-  else {
-    // 子ノードを選択します
-    Node *child = (curr->left_) ? curr->left_ : curr->right_;
-
-    // 削除するノードがルートノードでない場合は、その親を設定します
-    // その子に
-    if (curr != root) {
-      if (curr == parent->left_) {
-        parent->left_ = child;
-      } else {
-        parent->right_ = child;
-      }
-    } else {
-      // 削除するノードがルートノードの場合、ルートを子に設定します
-      root = child;
-    }
-
-    // メモリの割り当てを解除します
-    delete curr;
-  }
-}
-
-template <class T>
-bool BinarySearchTree<T>::remove(T val) {
-  remove_(head_, val);
-  return true;
-}
-
-template <class T>
-void BinarySearchTree<T>::findKeyNode(TreeNode<T> *&curr, T key,
-                                      TreeNode<T> *&parent) {
-  while (curr != nullptr && curr->val_ != key) {
-    parent = curr;
-
-    if (key < curr->val_) {
-      curr = curr->left_;
-    } else {
-      curr = curr->right_;
-    }
-  }
-}
-
-// find a Node within right subtree
-template <class T>
-TreeNode<T> *BinarySearchTree<T>::successor_(TreeNode<T> *node) {
-  while (node->left_ != nullptr) {
-    node = node->left_;
-  }
-  return node;
 }
 
 //
