@@ -10,6 +10,7 @@ add_library(Lib
   ./linked_list.cc
   ./queue.cc
   ./queue_ring_buffer.cc
+  ./sorting.cc
   ./stack.cc
   ./templates.cc
   ./tree.cc
