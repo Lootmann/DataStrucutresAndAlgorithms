@@ -13,6 +13,7 @@ add_executable(test_out
   ./test_doubly_linked_list.cc
   ./test_queue.cc
   ./test_ring_buffer_queue.cc
+  ./test_run_length_encoding.cc
   ./test_searching.cc
   ./test_sorting.cc
   ./test_stack.cc
