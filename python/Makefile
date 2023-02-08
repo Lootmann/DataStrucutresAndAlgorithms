@@ -3,3 +3,6 @@ run:
 
 test:
 	pytest -sv
+
+req:
+	pip freeze > ./requirements.txt
