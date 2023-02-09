@@ -8,6 +8,7 @@ template <typename T>
 class Searching {
 public:
   static int LinearSearch(std::vector<T> const &, T);
+  static int BinarySearch(std::vector<T> const &, T);
 };
 
 template class Searching<int>;
