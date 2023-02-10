@@ -3,11 +3,13 @@
 
 #include <algorithm>
 #include <cassert>
+#include <string>
 
+template <class T>
 class Array {
 private:
   int m_size;
-  int* m_array;
+  T* m_array;
 
 public:
   Array();
@@ -15,7 +17,13 @@ public:
   Array(int size, int fill);
   ~Array();
 
-  int& operator[](int idx) const;
-  Array& operator=(const Array& array);
+  T& operator[](int idx);
+  Array<T>& operator=(Array<T>&);
   int size() const;
 };
+
+template class Array<int>;
+template class Array<long int>;
+template class Array<long long int>;
+template class Array<char>;
+template class Array<std::string>;

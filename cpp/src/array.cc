@@ -1,26 +1,32 @@
 #include "../include/array.hpp"
 
-Array::Array() : Array(10, 0) {}
+template <class T>
+Array<T>::Array() : Array(10, 0) {}
 
-Array::Array(int size) : Array(size, 0) {}
+template <class T>
+Array<T>::Array(int size) : Array(size, 0) {}
 
-Array::Array(int size, int fill) : m_size(size) {
-  m_array = new int[size];
+template <class T>
+Array<T>::Array(int size, int fill) : m_size(size) {
+  m_array = new T[size];
   for (int i = 0; i < size; ++i) {
     m_array[i] = fill;
   }
 }
 
-Array::~Array() {
+template <class T>
+Array<T>::~Array() {
   delete[] m_array;
 }
 
-int &Array::operator[](int idx) const {
+template <class T>
+T &Array<T>::operator[](int idx) {
   assert(0 <= idx && idx < m_size);
   return m_array[idx];
 }
 
-Array &Array::operator=(const Array &array) {
+template <class T>
+Array<T> &Array<T>::operator=(Array<T> &array) {
   // same array
   if (this == &array) return *this;
 
@@ -29,7 +35,7 @@ Array &Array::operator=(const Array &array) {
     m_array = nullptr;
 
     m_size = array.size();
-    m_array = new int[m_size];
+    m_array = new T[m_size];
   }
 
   for (int i = 0; i < size(); ++i) {
@@ -39,6 +45,7 @@ Array &Array::operator=(const Array &array) {
   return *this;
 }
 
-int Array::size() const {
+template <class T>
+int Array<T>::size() const {
   return m_size;
 }

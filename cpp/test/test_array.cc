@@ -6,9 +6,10 @@
 
 class ArrayTest : public testing::Test {
 protected:
-  Array a;
-  Array b{100};
-  Array c{20, 9};
+  Array<int> a;
+  Array<int> b{100};
+  Array<int> c{20, 9};
+  Array<int> huge{100000};
 
   void SetUp() override {}
   virtual void TearDown() override {}
@@ -50,5 +51,23 @@ TEST_F(ArrayTest, EqualOperator) {
   for (int i = 0; i < a.size(); ++i) {
     EXPECT_EQ(a[i], 9);
     EXPECT_EQ(c[i], 9);
+  }
+}
+
+TEST_F(ArrayTest, OutBound) {
+  ASSERT_NO_THROW(a[a.size() - 1]);
+  ASSERT_DEATH(a[a.size()], "");
+  ASSERT_DEATH(a[-1], "");
+}
+
+TEST_F(ArrayTest, HugeTest) {
+  EXPECT_EQ(huge.size(), 100000);
+
+  for (int i = 0; i < huge.size(); ++i) {
+    huge[i] = i;
+  }
+
+  for (int i = 0; i < huge.size(); ++i) {
+    EXPECT_EQ(huge[i], i);
   }
 }
