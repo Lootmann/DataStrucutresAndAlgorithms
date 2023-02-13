@@ -7,6 +7,7 @@ add_library(Lib
   ./class_test.cc
   ./deq.cc
   ./doubly_linked_list_node.cc
+  ./graph.cc
   ./linked_list.cc
   ./queue.cc
   ./queue_ring_buffer.cc
