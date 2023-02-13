@@ -174,3 +174,14 @@ void BinarySearchTree<T>::preorder_(TreeNode<T> *node) {
     preorder_(node->right_);
   }
 }
+
+template <class T>
+int BinarySearchTree<T>::depth_(TreeNode<T> *node) {
+  if (node == nullptr) return 0;
+  return std::max(depth_(node->left_), depth_(node->right_)) + 1;
+}
+
+template <class T>
+int BinarySearchTree<T>::depth() {
+  return depth_(head_);
+}

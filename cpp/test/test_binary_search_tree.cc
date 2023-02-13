@@ -185,3 +185,24 @@ TEST_F(BinarySearchTreeTest, RemoveRootWithLeafs) {
   output = testing::internal::GetCapturedStdout();
   EXPECT_EQ("empty\n", output);
 }
+
+TEST_F(BinarySearchTreeTest, Depth) {
+  bst.insert(10);
+  EXPECT_EQ(bst.depth(), 1);
+
+  bst.insert(5);
+  bst.insert(15);
+  EXPECT_EQ(bst.depth(), 2);
+
+  bst.insert(1);
+  bst.insert(8);
+  bst.insert(12);
+  bst.insert(20);
+  EXPECT_EQ(bst.depth(), 3);
+
+  bst.insert(100);
+  EXPECT_EQ(bst.depth(), 4);
+
+  bst.remove(100);
+  EXPECT_EQ(bst.depth(), 3);
+}

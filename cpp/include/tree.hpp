@@ -30,6 +30,7 @@ private:
   void inorder_(TreeNode<T> *);
   void preorder_(TreeNode<T> *);
   void postorder_(TreeNode<T> *);
+  int depth_(TreeNode<T> *);
 
 public:
   BinarySearchTree();
@@ -38,6 +39,7 @@ public:
   void insert(T);
   TreeNode<T> *find(T);
   void remove(T);
+  int depth();
 
   // traverse
   void inorder();
