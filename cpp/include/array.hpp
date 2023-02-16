@@ -19,6 +19,7 @@ public:
 
   T& operator[](int idx);
   Array<T>& operator=(Array<T>&);
+  void resize();
   int size() const;
 };
 
