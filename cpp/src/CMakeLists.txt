@@ -8,6 +8,7 @@ add_library(Lib
   ./deq.cc
   ./doubly_linked_list_node.cc
   ./graph.cc
+  ./heap.cc
   ./linked_list.cc
   ./queue.cc
   ./queue_ring_buffer.cc

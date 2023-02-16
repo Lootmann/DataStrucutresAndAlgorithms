@@ -48,6 +48,7 @@ Array<T> &Array<T>::operator=(Array<T> &array) {
 template <class T>
 void Array<T>::resize() {
   int new_size = std::max(2 * m_size, 1);
+  m_size = new_size;
   T *b = new T[new_size];
   for (int i = 0; i < m_size; ++i) {
     b[i] = m_array[i];
