@@ -6,3 +6,6 @@ test:
 
 req:
 	pip freeze > ./requirements.txt
+
+pre:
+	pre-commit run --all-files
