@@ -10,6 +10,7 @@ add_executable(test_out
   ./test_class_test.cc
   ./test_deq.cc
   ./test_linked_list.cc
+  ./test_minstack.cc
   ./test_doubly_linked_list.cc
   ./test_graph.cc
   ./test_grid_graph.cc
