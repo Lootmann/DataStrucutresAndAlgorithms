@@ -8,6 +8,7 @@ template <typename T>
 class Sorting {
 public:
   static void BubbleSort(std::vector<T> &);
+  static void SelectionSort(std::vector<T> &);
 };
 
 template class Sorting<int>;

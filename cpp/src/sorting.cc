@@ -18,3 +18,24 @@ void Sorting<T>::BubbleSort(std::vector<T> &vec) {
     if (is_end) return;
   }
 }
+
+template <typename T>
+void Sorting<T>::SelectionSort(std::vector<T> &v) {
+  size_t size = v.size();
+
+  for (size_t i = 0; i < size - 1; ++i) {
+    size_t min_idx = i;
+
+    for (size_t j = i + 1; j < size; ++j) {
+      if (v[j] < v[min_idx]) {
+        min_idx = j;
+      }
+    }
+
+    if (min_idx != i) {
+      T tmp = v[min_idx];
+      v[min_idx] = v[i];
+      v[i] = tmp;
+    }
+  }
+}
