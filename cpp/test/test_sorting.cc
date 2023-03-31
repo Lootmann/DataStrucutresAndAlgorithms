@@ -37,3 +37,13 @@ TEST(SortingTest, SelectionSortFixed) {
   std::string output = testing::internal::GetCapturedStdout();
   EXPECT_EQ(output, "1 2 3 4 6 9 10 ");
 }
+
+TEST(SortingTest, InsertionSortFixed) {
+  std::vector<int> v{10, 3, 4, 6, 2, 1, 9};
+
+  Sorting<int>::InsertionSort(v);
+  testing::internal::CaptureStdout();
+  for (auto num : v) std::cout << num << ' ';
+  std::string output = testing::internal::GetCapturedStdout();
+  EXPECT_EQ(output, "1 2 3 4 6 9 10 ");
+}

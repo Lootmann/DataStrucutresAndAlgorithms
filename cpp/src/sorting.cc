@@ -39,3 +39,21 @@ void Sorting<T>::SelectionSort(std::vector<T> &v) {
     }
   }
 }
+
+template <typename T>
+void Sorting<T>::InsertionSort(std::vector<T> &v) {
+  T key;
+  int size = (int)v.size();
+
+  for (int i = 1; i < size; ++i) {
+    key = v[i];
+    int j = i - 1;
+
+    while (j >= 0 && v[j] > key) {
+      v[j + 1] = v[j];
+      j = j - 1;
+    }
+
+    v[j + 1] = key;
+  }
+}

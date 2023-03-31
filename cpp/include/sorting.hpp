@@ -9,6 +9,7 @@ class Sorting {
 public:
   static void BubbleSort(std::vector<T> &);
   static void SelectionSort(std::vector<T> &);
+  static void InsertionSort(std::vector<T> &);
 };
 
 template class Sorting<int>;
