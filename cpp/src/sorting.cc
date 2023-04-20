@@ -57,3 +57,50 @@ void Sorting<T>::InsertionSort(std::vector<T> &v) {
     v[j + 1] = key;
   }
 }
+
+template <typename T>
+void Sorting<T>::Merge(std::vector<T> &v, int left, int mid, int right) {
+  int n1 = mid - left + 1;
+  int n2 = right - mid;
+
+  std::vector<T> L(n1), R(n2);
+
+  for (int i = 0; i < n1; i++) {
+    L[i] = v[left + i];
+  }
+
+  for (int i = 0; i < n2; i++) {
+    R[i] = v[mid + 1 + i];
+  }
+
+  int i = 0, j = 0, k = mid;
+
+  while (i < n1 && j < n2) {
+    if (L[i] <= R[j]) {
+      v[k] = L[i++];
+    } else {
+      v[k] = R[j++];
+    }
+    k++;
+  }
+
+  while (i < n1) {
+    v[k] = L[i];
+    k++, i++;
+  }
+
+  while (j < n2) {
+    v[k] = R[j];
+    k++, j++;
+  }
+}
+
+template <typename T>
+void Sorting<T>::MergeSort(std::vector<T> &v, int left, int right) {
+  if (left < right) {
+    int mid = left + (right - left) / 2;
+    MergeSort(v, left, mid);
+    MergeSort(v, mid + 1, right);
+    Merge(v, left, mid, right);
+  }
+}
