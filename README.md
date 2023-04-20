@@ -37,6 +37,8 @@
   - [x] traverse
 - [x] Sorting
   - [x] Bubble Sort
+  - [x] Selection Sort
+  - [x] Insertion Sort
 
 ## python
 
